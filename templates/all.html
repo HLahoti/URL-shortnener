@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortner</title>
+</head>
+<body>
+    <a href="{% url 'home' %}">Home</a>
+    <br><br><br>
+    <table>
+        <tr>
+            <th>Shortened URL</th>
+            <th>Destination</th>
+            <th>Time</th>
+        </tr>
+        {% for link in links %}
+        <tr>
+            <td><a href="{% url 'red' link.short %}" target="_blank">red/{{link.short}}</a></td>
+            <td><a href={{link.long}} target="_blank">
+                {% if link.nick %}
+                {{link.nick}}
+                {% else %}
+                {{link.long}}
+                {% endif %}
+            </a></td>
+            <td>{{link.created|timesince}} ago</td>
+        </th>
+        {% endfor %}
+    </table>
+</body>
+</html>
